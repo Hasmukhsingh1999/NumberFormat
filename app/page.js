@@ -1,8 +1,12 @@
-"use client"
+"use client";
 import React from "react";
 import Output from "./components/Output";
+import { useForm } from "react-hook-form";
 
 const page = () => {
+  // register is a method allowing automatic regitser the two input its a callback and return some props and inject into your inputs ->
+  const { register, handleSubmit } = useForm();
+
   const handleInputChangeActualCost = (e) => {};
   const handleInputChangeSupplierCost = (e) => {};
 
@@ -15,6 +19,7 @@ const page = () => {
           type="text"
           placeholder="Actual Cost"
           name="actual_cost"
+          {...register("actual_cost")}
           onChange={handleInputChangeActualCost}
         />
         <input
@@ -22,6 +27,7 @@ const page = () => {
           type="text"
           placeholder="Supplier Cost"
           name="supplier_cost"
+          {...register("actual_cost")}
           onChange={handleInputChangeSupplierCost}
         />
         <button
