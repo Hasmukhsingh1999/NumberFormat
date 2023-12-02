@@ -5,16 +5,16 @@ import { useForm } from "react-hook-form";
 
 const page = () => {
   // register is a method allowing automatic regitser the two input its a callback and return some props and inject into your inputs ->
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, } = useForm();
 
   const handleInputChangeActualCost = (e) => {};
   const handleInputChangeSupplierCost = (e) => {};
 
   return (
-    <div className="h-screen w-full flex flex-col items-center justify-center gap-9">
+    <div className="h-screen w-full flex md:flex-row flex-col items-center justify-center gap-9">
       <h1 className="text-4xl font-bold ">FORM HANDLER</h1>
       <form
-        className="flex gap-5"
+        className="flex md:flex-row flex-col gap-5"
         onSubmit={handleSubmit((data) => {
           console.log(data);
         })}
