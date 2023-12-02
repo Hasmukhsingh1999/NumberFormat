@@ -5,12 +5,18 @@ import { useForm } from "react-hook-form";
 
 const page = () => {
   // register is a method allowing automatic regitser the two input its a callback and return some props and inject into your inputs ->
-  const { register, handleSubmit,watch } = useForm();
+  const { register, handleSubmit,watch ,setValue} = useForm();
 
   const actualCost = watch("actual_cost","");
   const supplierCost = watch("supplier_cost","");
 
-  const handleInputChangeActualCost = (e) => {};
+  const handleInputChangeActualCost = (e) => {
+    let inputValue = e.target.value.replace(/[^\d.]/g,"");
+    console.log(inputValue)
+    if(inputValue === ""){
+      
+    }
+  };
   const handleInputChangeSupplierCost = (e) => {};
 
   return (
