@@ -8,17 +8,17 @@ const page = () => {
 
   return (
     <div className="h-screen w-full flex flex-col items-center justify-center gap-9">
-      <h1 className="text-4xl font-bold text-gray-900">FORM HANDLER</h1>
+      <h1 className="text-4xl font-bold ">FORM HANDLER</h1>
       <form className="flex gap-5">
         <input
-          className="border border-gray-400 p-4 rounded-xl"
+          className="border border-gray-400 bg-transparent p-4 rounded-xl"
           type="text"
           placeholder="Actual Cost"
           name="actual_cost"
           onChange={handleInputChangeActualCost}
         />
         <input
-          className="border border-gray-400  p-4 rounded-xl"
+          className="border border-gray-400 bg-transparent p-4 rounded-xl"
           type="text"
           placeholder="Supplier Cost"
           name="supplier_cost"
