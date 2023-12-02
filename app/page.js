@@ -13,7 +13,12 @@ const page = () => {
   return (
     <div className="h-screen w-full flex flex-col items-center justify-center gap-9">
       <h1 className="text-4xl font-bold ">FORM HANDLER</h1>
-      <form className="flex gap-5">
+      <form
+        className="flex gap-5"
+        onSubmit={handleSubmit((data) => {
+          console.log(data);
+        })}
+      >
         <input
           className="border border-gray-400 bg-transparent p-4 rounded-xl"
           type="text"
