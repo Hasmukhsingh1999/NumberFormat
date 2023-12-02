@@ -43,7 +43,34 @@ const page = () => {
       }
     }
   };
-  const handleInputChangeSupplierCost = (e) => {};
+// ...
+
+const handleInputChangeSupplierCost = (e) => {
+  const inputValue = e.target.value.replace(/[^\d.]/g, "");
+  console.log(inputValue);
+  if (inputValue === "") {
+    setValue("supplier_cost", "");
+  } else {
+    const parts = inputValue.split(".");
+    console.log(parts);
+    if (parts.length > 1) {
+      const [integralParts, decimalPart] = parts;
+      console.log(integralParts, decimalPart);
+      const formattedInteger = new Intl.NumberFormat().format(integralParts);
+      const forattedDecimal = formatDecimalPart(decimalPart);
+
+      const formattedValue = `${formattedInteger}.${forattedDecimal}`;
+      setValue("supplier_cost", formattedValue);
+
+    } else {
+      const formattedValue = new Intl.NumberFormat().format(inputValue);
+      setValue("supplier_cost", formattedValue);
+    }
+  }
+};
+
+// ...
+
 
   return (
     <div className="h-screen w-full flex md:flex-row flex-col items-center justify-center gap-9">
