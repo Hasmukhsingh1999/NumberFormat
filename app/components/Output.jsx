@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
 
-const Output = () => {
+const Output = ({ actualCost, supplierCost }) => {
   return (
-    <div>Output</div>
-  )
-}
+    <div>
+      <p>Actual Cost: {actualCost}</p>
+      <p>Supplier Cost: {supplierCost}</p>
+    </div>
+  );
+};
 
-export default Output
+export default Output;

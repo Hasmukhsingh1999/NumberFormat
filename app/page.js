@@ -5,7 +5,10 @@ import { useForm } from "react-hook-form";
 
 const page = () => {
   // register is a method allowing automatic regitser the two input its a callback and return some props and inject into your inputs ->
-  const { register, handleSubmit, } = useForm();
+  const { register, handleSubmit,watch } = useForm();
+
+  const actualCost = watch("actual_cost","");
+  const supplierCost = watch("supplier_cost","");
 
   const handleInputChangeActualCost = (e) => {};
   const handleInputChangeSupplierCost = (e) => {};
@@ -16,7 +19,7 @@ const page = () => {
       <form
         className="flex md:flex-row flex-col gap-5"
         onSubmit={handleSubmit((data) => {
-          console.log(data);
+          console.log(data)
         })}
       >
         <input
@@ -32,7 +35,7 @@ const page = () => {
           type="text"
           placeholder="Supplier Cost"
           name="supplier_cost"
-          {...register("actual_cost")}
+          {...register("supplier_cost")}
           onChange={handleInputChangeSupplierCost}
         />
         <button
@@ -43,9 +46,9 @@ const page = () => {
         </button>
       </form>
       {/* OUTPUT  */}
-      <div>
-        <Output />
-      </div>
+      {/* <div>
+        <Output actualCost={actualCost} supplierCost={supplierCost} />
+      </div> */}
       {/* OUTPUT  */}
     </div>
   );
