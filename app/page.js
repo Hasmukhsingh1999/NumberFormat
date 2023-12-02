@@ -5,16 +5,42 @@ import { useForm } from "react-hook-form";
 
 const page = () => {
   // register is a method allowing automatic regitser the two input its a callback and return some props and inject into your inputs ->
-  const { register, handleSubmit,watch ,setValue} = useForm();
+  const { register, handleSubmit, watch, setValue } = useForm();
 
-  const actualCost = watch("actual_cost","");
-  const supplierCost = watch("supplier_cost","");
+  const actualCost = watch("actual_cost", "");
+  const supplierCost = watch("supplier_cost", "");
+
+  const formatDecimalPart = (decimalPart) => {
+    return decimalPart ? decimalPart.slice(0, 2) : "";
+  };
 
   const handleInputChangeActualCost = (e) => {
-    let inputValue = e.target.value.replace(/[^\d.]/g,"");
-    console.log(inputValue)
-    if(inputValue === ""){
-      
+    let inputValue = e.target.value.replace(/[^\d.]/g, "");
+    console.log(inputValue);
+    if (inputValue === "") {
+      setValue("actual_cost", "");
+    } else {
+      const partsTheInputWithDecimal = inputValue.split(".");
+      console.log("Parts : ", partsTheInputWithDecimal);
+
+      // fetch the two index in parts
+      if (partsTheInputWithDecimal.length > 1) {
+        const [integralParts, decimalParts] = partsTheInputWithDecimal;
+        console.log("IntegralParts", integralParts);
+        console.log("Decimal Parts:", decimalParts);
+        const formattedInteger = new Intl.NumberFormat().format(integralParts);
+        const forattedDecimal = formatDecimalPart(decimalParts);
+
+        const formattedValue = `${formattedInteger}.${forattedDecimal}`;
+        console.log("FormattedValue", formattedValue);
+
+        // Update input value
+        setValue("actual_cost", formattedValue);
+      } else {
+        const formattedValue = new Intl.NumberFormat().format(inputValue);
+        console.log("Formatted Value:", formattedValue);
+        setValue("actual_cost", formattedValue);
+      }
     }
   };
   const handleInputChangeSupplierCost = (e) => {};
@@ -25,7 +51,7 @@ const page = () => {
       <form
         className="flex md:flex-row flex-col gap-5"
         onSubmit={handleSubmit((data) => {
-          console.log(data)
+          console.log(data);
         })}
       >
         <input
@@ -52,9 +78,9 @@ const page = () => {
         </button>
       </form>
       {/* OUTPUT  */}
-      {/* <div>
+      <div>
         <Output actualCost={actualCost} supplierCost={supplierCost} />
-      </div> */}
+      </div>
       {/* OUTPUT  */}
     </div>
   );
